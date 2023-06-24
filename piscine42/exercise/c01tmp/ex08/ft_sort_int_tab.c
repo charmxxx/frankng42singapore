@@ -9,8 +9,8 @@ void	swap(int *a, int *b)
 
 void	ft_sort_int_tab(int *tab, int size)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	found;
 
 	found = 1;
