@@ -1,60 +1,60 @@
-#include <stdint.h>
 #include <unistd.h>
-#include <stdio.h>
 
-void	uint64_to_hex_str(uint64_t n, unsigned char *str)
+void	print_address(unsigned long loc)
 {
-	const uint8_t	hex[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-	int	i;
+	const unsigned char	hex[16] = "0123456789abcdef";
+	char				buffer[16];
+	int					i;
 
-	str[16] = '\0';
 	i = 15;
 	while (i >= 0)
 	{
-		str[i] = hex[n & 0x0f];
-		n >>= 4;
+		buffer[i] = hex[loc & 0xf];
+		loc >>= 4;
 		i--;
 	}
+	write(1, buffer, 16);
 }
 
-void	uint8_to_hex_str(uint8_t n, unsigned char *str)
+void	print_mem_hex(unsigned char *loc, unsigned int size)
 {
-	const uint8_t	hex[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-
-	str[0] = hex[(n >> 4) & 0x0f];
-	str[1] = hex[n & 0x0f];
-	str[2] = '\0';
-}
-
-void	print_str(unsigned char *str)
-{
-	int	i;
+	const unsigned char	hex[16] = "0123456789abcdef";
+	unsigned char		num;
+	unsigned int		i;
+	unsigned int		len;
 
 	i = 0;
-	while (str[i] != '\0')
+	len = 0;
+	while (i < size)
 	{
-		write(1, &str[i], 1);
+		num = *(unsigned char *)(loc + i);
+		write(1, &hex[(num >> 4) & 0x0f], 1);
+		write(1, &hex[num & 0x0f], 1);
+		if (i % 2 == 1)
+		{
+			write(1, " ", 1);
+			len++;
+		}
 		i++;
+		len += 2;
+	}
+	while (len < 40)
+	{
+		write(1, " ", 1);
+		len++;
 	}
 }
 
-uint8_t	is_printable(unsigned char c)
+void	print_mem_chars(unsigned char *loc, unsigned int size)
 {
-	if (c >= ' ' && c <= '~')
-		return (1);
-	return (0);
-}
-
-void	print_mem_chars(unsigned char *str, int l)
-{
-	int	i;
+	unsigned int	i;
 
 	i = 0;
-	while (i < l)
+	while (i < size)
 	{
-		if (is_printable(str[i]))
+		if (loc[i] >= ' ' && loc[i] <= '~')
 		{
-			write(1, &str[i], 1);
+			write(1, &loc[i], 1);
 		}
 		else
 		{
@@ -64,61 +64,32 @@ void	print_mem_chars(unsigned char *str, int l)
 	}
 }
 
-void	print_mem_address(void *loc)
+void	ft_print_memory(void *addr, unsigned int size)
 {
-	unsigned char	str[17];
+	unsigned int	cnt_size;
+	unsigned int	len;
+	unsigned char	*loc;
 
-	uint64_to_hex_str((uint64_t)loc, str);
-	print_str(str);
-}
-
-void	print_mem_hex(void *loc)
-{
-	int	i;
-	unsigned char	str[3];
-
-	i = 0;
-	while (i < 16)
+	loc = (unsigned char *)addr;
+	cnt_size = 0;
+	while (cnt_size < size)
 	{
-		uint8_to_hex_str(*(uint8_t *)(loc + i), str);
-		print_str(str);
-		if (i % 2 == 1)
-		{
-			write(1, " ", 1);
-		}
-		i++;
-	}
-}
-
-void	*ft_print_memory(void *addr, unsigned int size)
-{
-	unsigned int	line;
-	void			*loc;
-
-	loc = addr;
-	line = 0;
-	while (line <  size)
-	{
-		// print the address of the segment
-		print_mem_address(loc);
+		len = size - cnt_size;
+		if (len > 16)
+			len = 16;
+		print_address((unsigned long)loc);
 		write(1, ": ", 2);
-		// print the hex of the segment
-		print_mem_hex(loc);
-		// print the content of the segment in printable characters
-		print_mem_chars(loc, 16);
-
+		print_mem_hex(loc, len);
+		print_mem_chars(loc, len);
 		write(1, "\n", 1);
 		loc += 16;
-		line++;
+		cnt_size += 16;
 	}
-
-	return (addr);
 }
 
-int main()
+int	main(void)
 {
-	char *str = "hello world!!!!!!!!!!!!!!!!!!!!";
+	const char	*str = "hello world!!!!!!!!!!!!!!!!!!!!";
 
-
-	ft_print_memory((void *)str, 5);
+	ft_print_memory((void *)str, 63);
 }
