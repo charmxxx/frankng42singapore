@@ -86,10 +86,3 @@ void	ft_print_memory(void *addr, unsigned int size)
 		cnt_size += 16;
 	}
 }
-
-int	main(void)
-{
-	const char	*str = "hello world!!!!!!!!!!!!!!!!!!!!";
-
-	ft_print_memory((void *)str, 63);
-}

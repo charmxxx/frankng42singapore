@@ -9,7 +9,6 @@ char	to_lower(char c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return (c + 32);
-
 	return (c);
 }
 
@@ -17,14 +16,13 @@ char	to_upper(char c)
 {
 	if (c >= 'a' && c <= 'z')
 		return (c - 32);
-
-	return c;
+	return (c);
 }
 
 char	*ft_strcapitalize(char *str)
 {
-	int	i;
-	char is_first_letter;
+	char	is_first_letter;
+	int		i;
 
 	i = 0;
 	is_first_letter = 1;
@@ -32,14 +30,11 @@ char	*ft_strcapitalize(char *str)
 	{
 		if (is_alphabet(str[i]))
 		{
+			str[i] = to_lower(str[i]);
 			if (is_first_letter)
 			{
 				str[i] = to_upper(str[i]);
 				is_first_letter = 0;
-			}
-			else
-			{
-				str[i] = to_lower(str[i]);
 			}
 		}
 		else if (str[i] == ' ')
@@ -48,6 +43,5 @@ char	*ft_strcapitalize(char *str)
 		}
 		i++;
 	}
-
 	return (str);
 }

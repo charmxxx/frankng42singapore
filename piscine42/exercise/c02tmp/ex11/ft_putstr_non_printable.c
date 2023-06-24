@@ -2,8 +2,8 @@
 
 void	write_hexadecimal(char c)
 {
-	const unsigned char hex[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-	unsigned char	str[3];
+	const unsigned char	hex[] = "0123456789abcdef";
+	unsigned char		str[3];
 
 	str[0] = '\\';
 	str[1] = hex[c >> 4];

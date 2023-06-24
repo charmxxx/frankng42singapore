@@ -10,7 +10,8 @@ unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 		i++;
 	}
 	l = i;
-	while (src[l] != '\0') l++;
+	while (src[l] != '\0')
+		l++;
 	while (i < size)
 	{
 		dest[i] = '\0';
