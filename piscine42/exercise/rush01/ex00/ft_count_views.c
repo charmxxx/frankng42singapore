@@ -23,6 +23,8 @@ int	ft_count_left_views(int row, t_boardstat *s)
 	col = 1;
 	while (col <= s->size)
 	{
+		if (s->mat[row][col] == 0)
+			break ;
 		if (max < s->mat[row][col])
 		{
 			count++;
@@ -44,6 +46,8 @@ int	ft_count_right_views(int row, t_boardstat *s)
 	col = s->size;
 	while (col >= 1)
 	{
+		if (s->mat[row][col] == 0)
+			break ;
 		if (max < s->mat[row][col])
 		{
 			count++;
@@ -65,6 +69,8 @@ int	ft_count_up_views(int col, t_boardstat *s)
 	row = 1;
 	while (row <= s->size)
 	{
+		if (s->mat[row][col] == 0)
+			break ;
 		if (max < s->mat[row][col])
 		{
 			count++;
@@ -86,6 +92,8 @@ int	ft_count_down_views(int col, t_boardstat *s)
 	row = s->size;
 	while (row >= 1)
 	{
+		if (s->mat[row][col] == 0)
+			break ;
 		if (max < s->mat[row][col])
 		{
 			count++;

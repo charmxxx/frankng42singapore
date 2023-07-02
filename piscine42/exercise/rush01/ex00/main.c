@@ -29,6 +29,14 @@ int	ft_valid_case(int i, int j, int h, t_boardstat *s)
 		return (0);
 	if (ft_count_down_views(j, s) > s->downview[j])
 		return (0);
+	if (j == s->size && ft_count_left_views(i, s) != s->leftview[i])
+		return (0);
+	if (j == s->size && ft_count_right_views(i, s) != s->rightview[i])
+		return (0);
+	if (i == s->size && ft_count_up_views(j, s) != s->upview[j])
+		return (0);
+	if (i == s->size && ft_count_down_views(j, s) != s->downview[j])
+		return (0);
 	return (1);
 }
 
@@ -47,7 +55,7 @@ int	is_complete(int i, t_boardstat *s)
 
 void	try(int i, int j, t_boardstat *s)
 {
-	int		h;
+	int	h;
 
 	if (is_complete(i, s))
 		return ;
@@ -68,6 +76,7 @@ void	try(int i, int j, t_boardstat *s)
 		}
 		h++;
 	}
+	s->mat[i][j] = 0;
 }
 
 void	ft_initialize(t_boardstat *s)
