@@ -11,7 +11,39 @@
 /* ************************************************************************** */
 
 #include "helpers.h"
-#define BOARD_SIZE 9
+#define BOARD_SIZE 7
+
+int	row_max_val(t_boardstat *s, int row)
+{
+	int	col;
+	int	max;
+
+	col = 1;
+	max = 0;
+	while (col <= s->size && s->mat[row][col] != 0)
+	{
+		if (max < s->mat[row][col])
+			max = s->mat[row][col];
+		col++;
+	}
+	return (max);
+}
+
+int	col_max_val(t_boardstat *s, int col)
+{
+	int	row;
+	int	max;
+
+	row = 1;
+	max = 0;
+	while (row <= s->size && s->mat[row][col] != 0)
+	{
+		if (max < s->mat[row][col])
+			max = s->mat[row][col];
+		row++;
+	}
+	return (max);
+}
 
 int	ft_valid_case(int i, int j, int h, t_boardstat *s)
 {
@@ -29,6 +61,10 @@ int	ft_valid_case(int i, int j, int h, t_boardstat *s)
 	if (left_views > s->leftview[i])
 		return (0);
 	if (up_views > s->upview[j])
+		return (0);
+	if (left_views == s->leftview[i] && row_max_val(s, i) < s->size)
+		return (0);
+	if (up_views == s->upview[j] && col_max_val(s, j) < s->size)
 		return (0);
 	if (j == s->size && left_views != s->leftview[i])
 		return (0);
