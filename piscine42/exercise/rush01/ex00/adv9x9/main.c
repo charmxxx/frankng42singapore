@@ -11,27 +11,32 @@
 /* ************************************************************************** */
 
 #include "helpers.h"
-#define BOARD_SIZE 4
+#define BOARD_SIZE 9
 
 int	ft_valid_case(int i, int j, int h, t_boardstat *s)
 {
+	const int	left_views = ft_count_left_views(i, s);
+	const int	right_views = ft_count_right_views(i, s);
+	const int	up_views = ft_count_up_views(j, s);
+	const int	down_views = ft_count_down_views(j, s);
+
 	if (s->col_used[j][h] || s->row_used[i][h])
 		return (0);
 	if (i == 1 && s->upview[j] > s->size - h + 1)
 		return (0);
 	if (j == 1 && s->leftview[i] > s->size - h + 1)
 		return (0);
-	if (ft_count_left_views(i, s) > s->leftview[i])
+	if (left_views > s->leftview[i])
 		return (0);
-	if (ft_count_up_views(j, s) > s->upview[j])
+	if (up_views > s->upview[j])
 		return (0);
-	if (j == s->size && ft_count_left_views(i, s) != s->leftview[i])
+	if (j == s->size && left_views != s->leftview[i])
 		return (0);
-	if (j == s->size && ft_count_right_views(i, s) != s->rightview[i])
+	if (j == s->size && right_views != s->rightview[i])
 		return (0);
-	if (i == s->size && ft_count_up_views(j, s) != s->upview[j])
+	if (i == s->size && up_views != s->upview[j])
 		return (0);
-	if (i == s->size && ft_count_down_views(j, s) != s->downview[j])
+	if (i == s->size && down_views != s->downview[j])
 		return (0);
 	return (1);
 }
@@ -49,12 +54,24 @@ int	is_complete(int i, t_boardstat *s)
 	return (0);
 }
 
+void	try(int i, int j, t_boardstat *s);
+
+void	next(int i, int j, t_boardstat *s)
+{
+	if (j >= s->size)
+		try(i + 1, 1, s);
+	else
+		try(i, j + 1, s);
+}
+
 void	try(int i, int j, t_boardstat *s)
 {
 	int	h;
 
 	if (is_complete(i, s))
 		return ;
+	if (s->mat[i][j] != 0)
+		return (next(i, j, s));
 	h = 1;
 	while (h <= s->size)
 	{
@@ -63,10 +80,7 @@ void	try(int i, int j, t_boardstat *s)
 		{
 			s->col_used[j][h] = 1;
 			s->row_used[i][h] = 1;
-			if (j >= s->size)
-				try(i + 1, 1, s);
-			else
-				try(i, j + 1, s);
+			next(i, j, s);
 			s->col_used[j][h] = 0;
 			s->row_used[i][h] = 0;
 		}
@@ -80,6 +94,7 @@ void	ft_initialize(t_boardstat *s)
 	int	i;
 	int	j;
 
+	s->found = 0;
 	i = 0;
 	while (i <= s->size)
 	{
@@ -91,6 +106,88 @@ void	ft_initialize(t_boardstat *s)
 			s->row_used[i][j] = 0;
 			j++;
 		}
+		i++;
+	}
+}
+
+void	assign_cell(t_boardstat *s, int i, int j, int val)
+{
+	s->mat[i][j] = val;
+	s->col_used[j][val] = 1;
+	s->row_used[i][val] = 1;
+}
+
+void	assign_col(t_boardstat *s, int col, int istopview)
+{
+	int	row;
+
+	if (istopview)
+	{
+		row = 1;
+		while (row <= s->size)
+		{
+			assign_cell(s, row, col, row);
+			row++;
+		}
+	}
+	else
+	{
+		row = s->size;
+		while (row >= 1)
+		{
+			assign_cell(s, row, col, s->size - row + 1);
+			row--;
+		}
+	}
+}
+
+void	assign_row(t_boardstat *s, int row, int isleftview)
+{
+	int	col;
+
+	if (isleftview)
+	{
+		col = 1;
+		while (col <= s->size)
+		{
+			assign_cell(s, row, col, col);
+			col++;
+		}
+	}
+	else
+	{
+		col = s->size;
+		while (col >= 1)
+		{
+			assign_cell(s, row, col, s->size - col + 1);
+			col--;
+		}
+	}
+}
+
+void	ft_prefill(t_boardstat *s)
+{
+	int	i;
+
+	i = 1;
+	while (i < s->size)
+	{
+		if (s->upview[i] == 1)
+			assign_cell(s, 1, i, s->size);
+		if (s->downview[i] == 1)
+			assign_cell(s, s->size, i, s->size);
+		if (s->leftview[i] == 1)
+			assign_cell(s, i, 1, s->size);
+		if (s->rightview[i] == 1)
+			assign_cell(s, i, s->size, s->size);
+		if (s->upview[i] == s->size)
+			assign_col(s, i, 1);
+		if (s->downview[i] == s->size)
+			assign_col(s, i, 0);
+		if (s->leftview[i] == s->size)
+			assign_row(s, i, 1);
+		if (s->rightview[i] == s->size)
+			assign_row(s, i, 0);
 		i++;
 	}
 }
@@ -107,7 +204,7 @@ int	main(int argc, char *argv[])
 	}
 	ft_readview(argv[1], &s_stat);
 	ft_initialize(&s_stat);
-	s_stat.found = 0;
+	ft_prefill(&s_stat);
 	try(1, 1, &s_stat);
 	if (!s_stat.found)
 		ft_putstr("Error\n");
