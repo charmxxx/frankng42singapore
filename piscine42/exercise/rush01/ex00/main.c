@@ -33,7 +33,7 @@ int	ft_valid_case(int i, int j, int h, t_boardstat *s)
 }
 
 int	is_complete(int i, t_boardstat *s)
-{	
+{
 	if (s->found)
 		return (1);
 	if (i >= s->size + 1)
@@ -67,7 +67,7 @@ void	try(int i, int j, t_boardstat *s)
 			s->row_used[i][h] = 0;
 		}
 		h++;
-	}	
+	}
 }
 
 void	ft_initialize(t_boardstat *s)
