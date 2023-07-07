@@ -12,13 +12,25 @@
 
 #include <fcntl.h>
 #include <unistd.h>
-#include  <rush02.h>
+#include <stdlib.h>
+#include "rush02.h"
+
+void	ft_free(char **str)
+{
+	while(*str != 0)
+	{
+		free(*str);
+		str++;
+	}
+	free(str);
+}
 
 int	ft_parse_dict(const char *filepath)
 {
 	const int	fd = open(filepath, O_RDONLY);
 	size_t		bytes;
 	char		buf[BUFFER_SIZE];
+	char		**lines;
 
 	if (fd < 0)
 		return (1);
@@ -27,10 +39,9 @@ int	ft_parse_dict(const char *filepath)
 		bytes = read(fd, buf, BUFFER_SIZE);
 		if (bytes <= 0)
 			break ;
-		write(1, "start:", 5);
-		write(1, buf, bytes);
-		write(1, "<<end\n", 5);
+		lines = ft_split(buf, "\n");
 	}
+	ft_free(lines);
 	if (close(fd) < 0)
 		return (1);
 	return (0);

@@ -14,8 +14,14 @@
 # define RUSH02_H
 # define BUFFER_SIZE 1024
 
+typedef struct s_record
+{
+	int		key;
+	char	*val;
+}	t_record;
 char	**ft_split(const char *str, const char *sep);
 void	ft_putchar(const char c);
 void	ft_putstr(const char *str);
+int		ft_atoi(const char *str);
 
 #endif
