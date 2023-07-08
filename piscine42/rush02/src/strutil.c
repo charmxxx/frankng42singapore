@@ -49,3 +49,8 @@ int	ft_strslen(char **strs)
 		len++;
 	return (len);
 }
+
+int	ft_printable(char c)
+{
+	return (c >= ' ' && c <= '~');
+}

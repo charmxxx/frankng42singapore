@@ -67,22 +67,6 @@ void	ft_free_dict(t_record *dict)
 	free(dict);
 }
 
-void	ft_print_dict(t_record *dict)
-{
-	int	i;
-
-	i = 0;
-	while (dict[i].val != 0)
-	{
-		ft_putstr("key:");
-		ft_putnbr(dict[i].key);
-		ft_putstr(",val:");
-		ft_putstr(dict[i].val);
-		ft_putstr("\n");
-		i++;
-	}
-}
-
 char	*ft_get_val(t_record *dict, long long key)
 {
 	int	i;
@@ -95,4 +79,18 @@ char	*ft_get_val(t_record *dict, long long key)
 		i++;
 	}
 	return (NULL);
+}
+
+int	ft_count_valid_dict_records(char **strs)
+{
+	int	count;
+
+	count = 0;
+	while (*strs != 0)
+	{
+		if (ft_valid_dict_format(*strs))
+			count++;
+		strs++;
+	}
+	return (count);
 }

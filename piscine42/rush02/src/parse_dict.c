@@ -53,6 +53,28 @@ int		ft_initial_entries(long long key)
 	return (0);
 }
 
+int		ft_valid_dict_format(char *str)
+{
+	int	valid;
+
+	valid = 0;
+	while (*str >= '0' && *str <= '9')
+	{
+		valid = 1;
+		str++;
+	}
+	if (!valid)
+		return (0);
+	while (*str != 0 && *str != ':')
+		str++;
+	if (*str != ':')
+		return (0);
+	str++;
+	while (*str != 0 && *str == ' ')
+		str++;
+	return (ft_printable(*str));
+}
+
 t_record	*ft_dict_from_strs(char **strs)
 {
 	t_record	*dict;
@@ -61,19 +83,22 @@ t_record	*ft_dict_from_strs(char **strs)
 	int			j;
 	char		**kv;
 
-	len = ft_strslen(strs);
+	len = ft_count_valid_dict_records(strs);
 	dict = (t_record *)malloc((len + 1) * sizeof(t_record));
 	i = 0;
 	j = 0;
 	while (strs[j] != 0)
 	{
-		kv = ft_split(strs[j], ":");
-		dict[i].key = ft_atoi(kv[0]);
-		if (!ft_initial_entries(dict[i].key))
-			dict[i].key = -1;
-		dict[i].val = ft_parse_val(kv[1]);
-		ft_free_strs(kv);
-		i++;
+		if (ft_valid_dict_format(strs[j]))
+		{
+			kv = ft_split(strs[j], ":");
+			dict[i].key = ft_atoi(kv[0]);
+			if (!ft_initial_entries(dict[i].key))
+				dict[i].key = -1;
+			dict[i].val = ft_parse_val(kv[1]);
+			ft_free_strs(kv);
+			i++;
+		}
 		j++;
 	}
 	dict[len].val = 0;
