@@ -6,7 +6,7 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 09:26:13 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 14:51:54 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 15:38:45 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,18 @@ void	ft_print_dict(t_record *dict)
 		ft_putstr("\n");
 		i++;
 	}
+}
+
+char	*ft_get_val(t_record *dict, int key)
+{
+	int	i;
+
+	i = 0;
+	while (dict[i].val != 0)
+	{
+		if (dict[i].key == key)
+			return (dict[i].val);
+		i++;
+	}
+	return (NULL);
 }

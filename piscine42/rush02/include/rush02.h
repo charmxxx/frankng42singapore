@@ -6,13 +6,14 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 23:13:42 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 14:41:09 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 15:40:32 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RUSH02_H
 # define RUSH02_H
 # define BUFFER_SIZE 1024
+# define ERR_MSG "Dict Error\n"
 
 typedef struct s_record
 {
@@ -20,7 +21,7 @@ typedef struct s_record
 	char	*val;
 }	t_record;
 /* parse_dict.c */
-int	ft_parse_dict(char *filepath);
+t_record	*ft_parse_dict(char *filepath);
 /* strio.c */
 void	ft_putchar(char c);
 void	ft_putstr(char *str);
@@ -31,6 +32,7 @@ int		ft_strslen(char **strs);
 void	ft_strcpylr(char *dest, char *src, int l, int r);
 void	ft_strcpy(char *dest, char *src);
 /* strconv.c */
+int		ft_valid_number(char *str);
 int		ft_atoi(char *str);
 /* strsplit.c */
 int	issep(char c, char *sep);
@@ -39,6 +41,7 @@ char	**ft_split(char *str, char *sep);
 /* stralloc.c */
 void	ft_free_strs(char **strs);
 /* dict.c */
+char	*ft_get_val(t_record *dict, int key);
 void	ft_free_dict(t_record *dict);
 void	ft_print_dict(t_record *dict);
 #endif

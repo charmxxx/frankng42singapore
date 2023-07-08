@@ -6,19 +6,25 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 09:30:48 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 14:47:43 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 15:40:41 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rush02.h"
+
+char 	*ft_trim(char *str)
+{
+	while (*str == ' ')
+		str++;
+	return (str);
+}
 
 int	ft_atoi(char *str)
 {
 	int	sign;
 	int	n;
 
-	while (*str == ' ')
-		str++;
+	str = ft_trim(str);
 	sign = 1;
 	if (*str == '-')
 	{
@@ -34,4 +40,16 @@ int	ft_atoi(char *str)
 		str++;
 	}
 	return (sign * n);
+}
+
+int	ft_valid_number(char *str)
+{
+	str = ft_trim(str);
+	while (*str != 0)
+	{
+		if (*str < '0' || *str > '9')
+		       return (0);	
+		str++;
+	}
+	return (1);
 }
