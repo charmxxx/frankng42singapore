@@ -6,14 +6,15 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 23:13:42 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 16:43:03 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:11:23 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RUSH02_H
 # define RUSH02_H
 # define BUFFER_SIZE 1024
-# define ERR_MSG "Dict Error\n"
+# define INVALID_NUMBER "Error\n"
+# define DICT_ERROR "Dict Error\n"
 
 typedef struct s_record
 {
@@ -46,6 +47,7 @@ void	ft_sortdict(t_record *dict);
 /* dict.c */
 int	ft_dictlen(t_record *dict);
 char	*ft_get_val(t_record *dict, int key);
+void	ft_eval_key(t_record *dict, int key);
 void	ft_free_dict(t_record *dict);
 void	ft_print_dict(t_record *dict);
 #endif

@@ -6,12 +6,36 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 09:26:13 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 15:38:45 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:08:26 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rush02.h"
 #include <stdlib.h>
+
+void	ft_eval_key(t_record *dict, int key)
+{
+	int		i;
+	int		div;
+	char	*val;
+
+	val = ft_get_val(dict, key);
+	if (val != NULL)
+	{
+		ft_putstr(val);
+		return ;
+	}
+	i = 0;
+	while (dict[i].key > key &&  dict[i].val != 0)
+		i++;
+	div = key / dict[i].key;
+	if (div == 1)
+		ft_putstr(dict[i].val);
+	else
+		ft_eval_key(dict, key / dict[i].key);
+	ft_putstr(" ");
+	ft_eval_key(dict, key % dict[i].key);
+}
 
 void	ft_free_dict(t_record *dict)
 {

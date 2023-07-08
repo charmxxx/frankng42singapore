@@ -6,7 +6,7 @@
 /*   By: vietnguy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 12:59:34 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 16:37:36 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:13:12 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,18 @@
 int	ft_convert(t_record *dict, char *str)
 {
 	int	key;
-	char	*val;
 
 	if (!ft_valid_number(str))
 		return (1);
 	key = ft_atoi(str);
-	val = ft_get_val(dict, key);
-	if (val == NULL)
-		return (1);
-	ft_putstr(val);
+	ft_eval_key(dict, key);
 	ft_putstr("\n");
 	return (0);
 }
 
-int	ft_error(void)
+int	ft_error(const char *msg)
 {
-	ft_putstr(ERR_MSG);
+	ft_putstr((char *)msg);
 	return (1);
 }
 
@@ -41,11 +37,10 @@ int	main(int argc, char **argv)
 	char		*key;
 
 	if (argc < 2 || argc > 3)
-		return (ft_error());
+		return (ft_error(DICT_ERROR));
 	if (argc == 2)
 	{
 		dict = ft_parse_dict("numbers.dict");
-		ft_print_dict(dict);
 		key = argv[1];
 	}
 	else
@@ -54,8 +49,8 @@ int	main(int argc, char **argv)
 		key = argv[2];
 	}
 	if (dict == NULL)
-		return (ft_error());
+		return (ft_error(DICT_ERROR));
 	if (ft_convert(dict, key))
-		ft_error();
+		ft_error(INVALID_NUMBER);
 	ft_free_dict(dict);
 }
