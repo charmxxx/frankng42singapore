@@ -6,7 +6,7 @@
 /*   By: vietnguy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 12:59:34 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 15:43:29 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 16:37:36 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		dict = ft_parse_dict("numbers.dict");
+		ft_print_dict(dict);
 		key = argv[1];
 	}
 	else

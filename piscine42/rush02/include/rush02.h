@@ -6,7 +6,7 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 23:13:42 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 15:40:32 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 16:43:03 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,11 @@ int	ft_count_words(char *str, char *sep);
 char	**ft_split(char *str, char *sep);
 /* stralloc.c */
 void	ft_free_strs(char **strs);
+/* sortdict.c */
+int	ft_dictkeycmp(t_record k1, t_record k2);
+void	ft_sortdict(t_record *dict);
 /* dict.c */
+int	ft_dictlen(t_record *dict);
 char	*ft_get_val(t_record *dict, int key);
 void	ft_free_dict(t_record *dict);
 void	ft_print_dict(t_record *dict);

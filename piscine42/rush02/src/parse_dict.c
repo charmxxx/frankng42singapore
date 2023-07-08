@@ -6,7 +6,7 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 22:54:20 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 15:09:10 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 16:41:51 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_record	*ft_parse_dict(char *filepath)
 		return (NULL);
 	lines = ft_split(buf, "\n");
 	dict = ft_dict_from_strs(lines);
+	ft_sortdict(dict);
 	ft_free_strs(lines);
 	if (close(fd) < 0)
 	{
