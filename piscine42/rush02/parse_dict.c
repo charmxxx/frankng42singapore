@@ -15,14 +15,27 @@
 #include <stdlib.h>
 #include "rush02.h"
 
-void	ft_free(char **str)
+t_record	*ft_init_dict(char **lines)
 {
-	while(*str != 0)
+	t_record	*dict;
+	int			len;
+	int			i;
+	char		**kv;
+
+	len = ft_len_strs(lines);
+	dict = (t_record *)malloc((len + 1) * sizeof(t_record));
+	i = 0;
+	while (*lines != 0)
 	{
-		free(*str);
-		str++;
+		kv = ft_split(*lines, " :");
+		dict[i].key = (char *)malloc((ft_strlen(kv[0]) + 1) * sizeof(char));
+		dict[i].val = (char *)malloc((ft_strlen(kv[1]) + 1) * sizeof(char));
+		ft_strcpy(dict[i].key, kv[0]);
+		ft_strcpy(dict[i].val, kv[1]);
+		ft_free_strs(kv);
 	}
-	free(str);
+	dict[len].val = 0;
+	return (dict);
 }
 
 int	ft_parse_dict(const char *filepath)
@@ -31,17 +44,16 @@ int	ft_parse_dict(const char *filepath)
 	size_t		bytes;
 	char		buf[BUFFER_SIZE];
 	char		**lines;
+	t_record	*dict;
 
 	if (fd < 0)
 		return (1);
-	while (1)
-	{
-		bytes = read(fd, buf, BUFFER_SIZE);
-		if (bytes <= 0)
-			break ;
-		lines = ft_split(buf, "\n");
-	}
-	ft_free(lines);
+	bytes = read(fd, buf, BUFFER_SIZE);
+	if (bytes <= 0)
+		return (1);
+	lines = ft_split(buf, "\n");
+	dict = ft_init_dict(lines);
+	ft_free_strs(lines);
 	if (close(fd) < 0)
 		return (1);
 	return (0);
