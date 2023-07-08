@@ -6,7 +6,7 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 23:13:42 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 13:07:28 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 14:12:09 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ void	ft_putstr(char *str);
 /* strutil.c */
 int		ft_strlen(char *str);
 int		ft_strslen(char **strs);
-char	*ft_strcpy(char *dest, char *src);
+void	ft_strcpylr(char *dest, char *src, int l, int r);
+void	ft_strcpy(char *dest, char *src);
 /* strconv.c */
 int		ft_atoi(char *str);
 /* strsplit.c */
+int	issep(char c, char *sep);
 int	ft_count_words(char *str, char *sep);
 char	**ft_split(char *str, char *sep);
 /* stralloc.c */

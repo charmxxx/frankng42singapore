@@ -6,7 +6,7 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 22:54:20 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 13:07:54 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 14:28:12 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_record	*ft_init_dict(char **lines)
 		ft_strcpy(dict[i].key, kv[0]);
 		ft_strcpy(dict[i].val, kv[1]);
 		ft_free_strs(kv);
+		lines++;
+		i++;
 	}
 	dict[len].val = 0;
 	return (dict);

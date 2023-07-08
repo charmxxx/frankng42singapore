@@ -6,11 +6,12 @@
 /*   By: vietnguy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 12:59:34 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 12:59:57 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 14:22:59 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rush02.h"
+#include <stdio.h>
 
 int	main(void)
 {

@@ -6,7 +6,7 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 09:18:18 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 13:04:01 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 14:25:30 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	issep(char c, char *sep)
 {
 	while (*sep != 0 && c != *sep)
 		sep++;
-	return (*sep == 0);
+	return (*sep == c);
 }
 
 int	ft_count_words(char *str, char *sep)
@@ -53,7 +53,7 @@ char	**ft_split(char *str, char *sep)
 	list = (char **)malloc((size + 1) * sizeof(char *));
 	i = 0;
 	k = 0;
-	while (k <  size)
+	while (k < size)
 	{
 		while (issep(str[i], sep))
 			i++;
@@ -61,9 +61,10 @@ char	**ft_split(char *str, char *sep)
 		while (!issep(str[j], sep) && str[j] != 0)
 			j++;
 		list[k] = (char *)malloc((j - i + 1) * sizeof(char));
+		ft_strcpylr(list[k], str, i, j);
 		k++;
 		i = j + 1;
 	}
-	list[k] = 0;
+	list[size] = 0;
 	return (list);
 }
