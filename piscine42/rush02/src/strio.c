@@ -27,6 +27,20 @@ void	ft_putstr(char *str)
 	}
 }
 
+void	ft_putstrs(char **strs)
+{
+	int	i;
+
+	i = 0;
+	while (*strs != 0)
+	{
+		ft_putstr(*strs);
+		ft_putstr("\n");
+		strs++;
+		i++;
+	}
+}
+
 void	ft_put_pos_nbr(int nbr)
 {
 	if (nbr > 9)

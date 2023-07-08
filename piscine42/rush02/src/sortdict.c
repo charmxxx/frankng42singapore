@@ -16,6 +16,8 @@ int	ft_dictkeycmp(t_record k1, t_record k2)
 {
 	if (k1.key < k2.key)
 		return (1);
+	if (k1.key > k2.key)
+		return (-1);
 	return (0);
 }
 
@@ -24,11 +26,8 @@ int	ft_dictlen(t_record *dict)
 	int	len;
 
 	len = 0;
-	while (dict->val != 0)
-	{
+	while (dict[len].val != 0)
 		len++;
-		dict++;
-	}
 	return (len);
 }
 

@@ -14,7 +14,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "rush02.h"
-#include <stdio.h>
 
 char		*ft_parse_val(char *val)
 {
@@ -59,26 +58,25 @@ t_record	*ft_dict_from_strs(char **strs)
 	t_record	*dict;
 	int			len;
 	int			i;
+	int			j;
 	char		**kv;
 
 	len = ft_strslen(strs);
 	dict = (t_record *)malloc((len + 1) * sizeof(t_record));
 	i = 0;
-	while (*strs != 0)
+	j = 0;
+	while (strs[j] != 0)
 	{
-		printf("%p\n", *strs);
-		kv = ft_split(*strs, ":");
+		kv = ft_split(strs[j], ":");
 		dict[i].key = ft_atoi(kv[0]);
 		if (!ft_initial_entries(dict[i].key))
 			dict[i].key = -1;
 		dict[i].val = ft_parse_val(kv[1]);
 		ft_free_strs(kv);
-		strs++;
-		printf("%p %p\n", strs, *strs);
 		i++;
+		j++;
 	}
 	dict[len].val = 0;
-	ft_print_dict(dict);
 	return (dict);
 }
 
@@ -95,10 +93,10 @@ t_record	*ft_parse_dict(char *filepath)
 	bytes = read(fd, buf, BUFFER_SIZE);
 	if (bytes <= 0)
 		return (NULL);
+	buf[bytes] = 0;
 	lines = ft_split(buf, "\n");
 	dict = ft_dict_from_strs(lines);
-	//ft_sortdict(dict);
-	ft_print_dict(dict);
+	ft_sortdict(dict);
 	ft_free_strs(lines);
 	if (close(fd) < 0)
 	{

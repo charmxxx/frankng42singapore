@@ -25,32 +25,29 @@ int	ft_convert(t_record *dict, char *str)
 	return (0);
 }
 
-int	ft_error(const char *msg)
-{
-	ft_putstr((char *)msg);
-	return (1);
-}
-
 int	main(int argc, char **argv)
 {
 	t_record	*dict;
 	char		*key;
 
-	if (argc < 2 || argc > 3)
-		return (ft_error(DICT_ERROR));
+	dict = NULL;
 	if (argc == 2)
 	{
 		dict = ft_parse_dict("numbers.dict");
 		key = argv[1];
 	}
-	else
+	else if (argc == 3)
 	{
 		dict = ft_parse_dict(argv[1]);
 		key = argv[2];
 	}
 	if (dict == NULL)
-		return (ft_error(DICT_ERROR));
+	{
+		ft_putstr(DICT_ERROR);
+		return (1);
+	}
 	if (ft_convert(dict, key))
-		ft_error(INVALID_NUMBER);
+		ft_putstr(INVALID_NUMBER);
 	ft_free_dict(dict);
+	return (0);
 }

@@ -26,6 +26,7 @@ t_record	*ft_parse_dict(char *filepath);
 /* strio.c */
 void	ft_putchar(char c);
 void	ft_putstr(char *str);
+void	ft_putstrs(char **strs);
 void	ft_putnbr(int nbr);
 /* strutil.c */
 int		ft_strlen(char *str);
