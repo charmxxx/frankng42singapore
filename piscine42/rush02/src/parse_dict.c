@@ -84,21 +84,20 @@ t_record	*ft_dict_from_strs(char **strs)
 	char		**kv;
 
 	len = ft_count_valid_dict_records(strs);
+	if (len < 0)
+		return (NULL);
 	dict = (t_record *)malloc((len + 1) * sizeof(t_record));
 	i = 0;
 	j = 0;
 	while (strs[j] != 0)
 	{
-		if (ft_valid_dict_format(strs[j]))
-		{
-			kv = ft_split(strs[j], ":");
-			dict[i].key = ft_atoi(kv[0]);
-			if (!ft_initial_entries(dict[i].key))
-				dict[i].key = -1;
-			dict[i].val = ft_parse_val(kv[1]);
-			ft_free_strs(kv);
-			i++;
-		}
+		kv = ft_split(strs[j], ":");
+		dict[i].key = ft_atoi(kv[0]);
+		if (!ft_initial_entries(dict[i].key))
+			dict[i].key = -1;
+		dict[i].val = ft_parse_val(kv[1]);
+		ft_free_strs(kv);
+		i++;
 		j++;
 	}
 	dict[len].val = 0;
@@ -121,6 +120,8 @@ t_record	*ft_parse_dict(char *filepath)
 	buf[bytes] = 0;
 	lines = ft_split(buf, "\n");
 	dict = ft_dict_from_strs(lines);
+	if (dict == NULL)
+		return (NULL);
 	ft_sortdict(dict);
 	ft_free_strs(lines);
 	if (close(fd) < 0)

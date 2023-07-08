@@ -13,16 +13,15 @@
 #include "rush02.h"
 #include <stdlib.h>
 
-int	ft_convert(t_record *dict, char *str)
+void	ft_convert(t_record *dict, char *str)
 {
 	long long	key;
 
 	if (!ft_valid_number(str))
-		return (1);
+		return (ft_putstr(INVALID_NUMBER));
 	key = ft_atoi(str);
 	ft_eval_key(dict, key);
 	ft_putstr("\n");
-	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -46,8 +45,7 @@ int	main(int argc, char **argv)
 		ft_putstr(DICT_ERROR);
 		return (1);
 	}
-	if (ft_convert(dict, key))
-		ft_putstr(INVALID_NUMBER);
+	ft_convert(dict, key);
 	ft_free_dict(dict);
 	return (0);
 }

@@ -88,8 +88,9 @@ int	ft_count_valid_dict_records(char **strs)
 	count = 0;
 	while (*strs != 0)
 	{
-		if (ft_valid_dict_format(*strs))
-			count++;
+		if (!ft_valid_dict_format(*strs))
+			return (-1);
+		count++;
 		strs++;
 	}
 	return (count);
