@@ -6,7 +6,7 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 23:13:42 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 14:12:09 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 14:41:09 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 typedef struct s_record
 {
-	char	*key;
+	int	key;
 	char	*val;
 }	t_record;
 /* parse_dict.c */
@@ -24,6 +24,7 @@ int	ft_parse_dict(char *filepath);
 /* strio.c */
 void	ft_putchar(char c);
 void	ft_putstr(char *str);
+void	ft_putnbr(int nbr);
 /* strutil.c */
 int		ft_strlen(char *str);
 int		ft_strslen(char **strs);

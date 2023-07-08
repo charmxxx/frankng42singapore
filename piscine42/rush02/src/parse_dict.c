@@ -6,7 +6,7 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 22:54:20 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 14:28:12 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 14:39:34 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ t_record	*ft_init_dict(char **lines)
 	while (*lines != 0)
 	{
 		kv = ft_split(*lines, " :");
-		dict[i].key = (char *)malloc((ft_strlen(kv[0]) + 1) * sizeof(char));
+		dict[i].key = ft_atoi(kv[0]);
 		dict[i].val = (char *)malloc((ft_strlen(kv[1]) + 1) * sizeof(char));
-		ft_strcpy(dict[i].key, kv[0]);
 		ft_strcpy(dict[i].val, kv[1]);
 		ft_free_strs(kv);
 		lines++;
