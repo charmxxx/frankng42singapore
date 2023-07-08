@@ -5,7 +5,7 @@ SRC = main.c dict.c parse_dict.c stralloc.c strconv.c \
 PRE = ./src/
 SRCS = ${addprefix ${PRE}, ${SRC}}
 OBJS = ${SRCS:.c=.o}
-CFLAGS = -Wall -Wextra -Werror -I ${INCLUDE}
+CFLAGS = -g -Wall -Wextra -Werror -I ${INCLUDE}
 CC = cc
 RM = rm -f
 

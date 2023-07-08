@@ -6,7 +6,7 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 09:30:48 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 15:40:41 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:55:01 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ char 	*ft_trim(char *str)
 	return (str);
 }
 
-int	ft_atoi(char *str)
+long long	ft_atoi(char *str)
 {
-	int	sign;
-	int	n;
+	long long	sign;
+	long long	n;
 
 	str = ft_trim(str);
 	sign = 1;

@@ -6,7 +6,7 @@
 /*   By: vietnguy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 12:59:34 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 17:13:12 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:50:37 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	ft_convert(t_record *dict, char *str)
 {
-	int	key;
+	long long	key;
 
 	if (!ft_valid_number(str))
 		return (1);
