@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_dict.c                                    :+:      :+:    :+:   */
+/*   parse_dict.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 22:54:20 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/07 22:54:21 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 13:07:54 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_record	*ft_init_dict(char **lines)
 	int			i;
 	char		**kv;
 
-	len = ft_len_strs(lines);
+	len = ft_strslen(lines);
 	dict = (t_record *)malloc((len + 1) * sizeof(t_record));
 	i = 0;
 	while (*lines != 0)
@@ -38,7 +38,7 @@ t_record	*ft_init_dict(char **lines)
 	return (dict);
 }
 
-int	ft_parse_dict(const char *filepath)
+int	ft_parse_dict(char *filepath)
 {
 	const int	fd = open(filepath, O_RDONLY);
 	size_t		bytes;
@@ -53,13 +53,10 @@ int	ft_parse_dict(const char *filepath)
 		return (1);
 	lines = ft_split(buf, "\n");
 	dict = ft_init_dict(lines);
+	ft_print_dict(dict);
+	ft_free_dict(dict);
 	ft_free_strs(lines);
 	if (close(fd) < 0)
 		return (1);
 	return (0);
-}
-
-int	main(void)
-{
-	ft_parse_dict("numbers.dict");
 }

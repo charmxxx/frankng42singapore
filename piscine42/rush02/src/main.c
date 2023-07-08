@@ -1,15 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dict.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
+/*   By: vietnguy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/08 09:26:13 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 09:26:15 by vietnguy         ###   ########.fr       */
+/*   Created: 2023/07/08 12:59:34 by vietnguy          #+#    #+#             */
+/*   Updated: 2023/07/08 12:59:57 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_free_dict(t_record *dict)
+#include "rush02.h"
+
+int	main(void)
 {
+	ft_parse_dict("numbers.dict");
 }
