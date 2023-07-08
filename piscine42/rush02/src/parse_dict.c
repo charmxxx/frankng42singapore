@@ -6,7 +6,7 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 22:54:20 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 16:41:51 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:25:06 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,31 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "rush02.h"
+
+char		*ft_parse_val(char *val)
+{
+	int	l;
+	int	r;
+	int	i;
+	char	*str;
+
+	l = 0;
+	while (val[l] == ' ')
+		l++;
+	r = ft_strlen(val) - 1;
+	while (val[r] == ' ')
+		r--;
+	str = (char *)malloc((r - l + 2) * sizeof(char));
+	i = 0;
+	while (l <= r)
+	{
+		str[i] = val[l];
+		i++;
+		l++;
+	}
+	str[i] = 0;
+	return (str);
+}
 
 t_record	*ft_dict_from_strs(char **strs)
 {
@@ -27,10 +52,9 @@ t_record	*ft_dict_from_strs(char **strs)
 	i = 0;
 	while (*strs != 0)
 	{
-		kv = ft_split(*strs, " :");
+		kv = ft_split(*strs, ":");
 		dict[i].key = ft_atoi(kv[0]);
-		dict[i].val = (char *)malloc((ft_strlen(kv[1]) + 1) * sizeof(char));
-		ft_strcpy(dict[i].val, kv[1]);
+		dict[i].val = ft_parse_val(kv[1]);
 		ft_free_strs(kv);
 		strs++;
 		i++;
