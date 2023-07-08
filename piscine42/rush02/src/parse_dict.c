@@ -6,7 +6,7 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 22:54:20 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 18:25:06 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:58:04 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "rush02.h"
+#include <stdio.h>
 
 char		*ft_parse_val(char *val)
 {
@@ -40,6 +41,19 @@ char		*ft_parse_val(char *val)
 	return (str);
 }
 
+int		ft_initial_entries(long long key)
+{
+	if (0 <= key && key <= 20)
+		return (1);
+	if (key == 30 || key == 40 || key == 50 || key == 60)
+		return (1);
+	if (key == 70 || key == 80 || key == 90 || key == 100)
+		return (1);
+	if (key == 1000 || key == 1000000 || key == 1000000000)
+		return (1);
+	return (0);
+}
+
 t_record	*ft_dict_from_strs(char **strs)
 {
 	t_record	*dict;
@@ -52,14 +66,19 @@ t_record	*ft_dict_from_strs(char **strs)
 	i = 0;
 	while (*strs != 0)
 	{
+		printf("%p\n", *strs);
 		kv = ft_split(*strs, ":");
 		dict[i].key = ft_atoi(kv[0]);
+		if (!ft_initial_entries(dict[i].key))
+			dict[i].key = -1;
 		dict[i].val = ft_parse_val(kv[1]);
 		ft_free_strs(kv);
 		strs++;
+		printf("%p %p\n", strs, *strs);
 		i++;
 	}
 	dict[len].val = 0;
+	ft_print_dict(dict);
 	return (dict);
 }
 
@@ -78,7 +97,8 @@ t_record	*ft_parse_dict(char *filepath)
 		return (NULL);
 	lines = ft_split(buf, "\n");
 	dict = ft_dict_from_strs(lines);
-	ft_sortdict(dict);
+	//ft_sortdict(dict);
+	ft_print_dict(dict);
 	ft_free_strs(lines);
 	if (close(fd) < 0)
 	{

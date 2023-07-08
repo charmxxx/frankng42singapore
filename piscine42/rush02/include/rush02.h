@@ -6,13 +6,13 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 23:13:42 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 17:54:38 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:52:38 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RUSH02_H
 # define RUSH02_H
-# define BUFFER_SIZE 1024
+# define BUFFER_SIZE 4096 
 # define INVALID_NUMBER "Error\n"
 # define DICT_ERROR "Dict Error\n"
 

@@ -6,7 +6,7 @@
 /*   By: vietnguy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 16:17:42 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 16:42:48 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:41:44 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int	ft_dictkeycmp(t_record k1, t_record k2)
 {
-	return (k2.key - k1.key);
+	if (k1.key < k2.key)
+		return (1);
+	return (0);
 }
 
 int	ft_dictlen(t_record *dict)
