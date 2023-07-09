@@ -6,7 +6,7 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 09:26:13 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/09 20:09:12 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/09 22:58:49 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,10 @@ void	ft_eval(t_record *dict, int i, long long key)
 			if (ft_require_comma(dict[i].key))
 				ft_putstr(",");
 			ft_putstr(" ");
-			ft_eval_key(dict, mod);	
 		}
 	}
+	if (mod > 0)
+		ft_eval_key(dict, mod);
 }
 
 void	ft_eval_key(t_record *dict, long long key)
