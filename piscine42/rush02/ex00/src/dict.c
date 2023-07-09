@@ -6,7 +6,7 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 09:26:13 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/09 23:04:55 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/09 23:32:16 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_printkv(long long key, char *val)
 
 int	ft_require_comma(long long key)
 {
-	return (key == 1000 || key == 10000000 || key == 1000000000);
+	return (key == 1000 || key == 1000000 || key == 1000000000);
 }
 
 void	ft_eval(t_record *dict, int i, long long key)
