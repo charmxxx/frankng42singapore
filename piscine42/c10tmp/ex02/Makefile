@@ -1,7 +1,7 @@
 TARGET = ft_tail
-SRCFILE = main.c
+SRCFILE = main.c util.c
 SRCPATH = ./src/
-SRCS = $(addprefix $(SRCFILE), $(SRCPATH))
+SRCS = $(addprefix $(SRCPATH), $(SRCFILE))
 OBJS = $(SRCS:.c=.o)
 HEADERS = ./include/
 CC = cc
