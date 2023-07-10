@@ -1,12 +1,12 @@
-TARGET := ft_cat
-SRCFILE := main.c
-SRCPATH := ./src/
-SRCS := $(addprefix $(SRCPATH), $(SRCFILE))
-HEADERS := ./include/
-OBJS := $(SRCS:.c=.o)
-CC := cc
-RM := rm -f
-CFLAGS := -g -Wall -Wextra -Werror -I $(HEADERS)
+TARGET = ft_tail
+SRCFILE = main.c
+SRCPATH = ./src/
+SRCS = $(addprefix $(SRCFILE), $(SRCPATH))
+OBJS = $(SRCS:.c=.o)
+HEADERS = ./include/
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -I $(HEADERS)
+RM = rm -f
 
 .PHONY: all clean fclean re
 
@@ -25,3 +25,4 @@ fclean: clean
 	$(RM) $(TARGET)
 
 re: fclean all
+

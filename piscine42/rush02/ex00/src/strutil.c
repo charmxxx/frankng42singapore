@@ -27,7 +27,7 @@ void	ft_strcpylr(char *dest, char *src, int l, int r)
 		l++;
 		dest++;
 	}
-	*dest = 0;	
+	*dest = 0;
 }
 
 int	ft_strlen(char *str)

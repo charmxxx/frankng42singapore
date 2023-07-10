@@ -33,7 +33,7 @@ int	ft_dictlen(t_record *dict)
 
 void	ft_swapkv(t_record *r1, t_record *r2)
 {
-	int	keytmp;
+	int		keytmp;
 	char	*valtmp;
 
 	keytmp = r1->key;
@@ -56,7 +56,7 @@ void	ft_sortdict(t_record *dict)
 	{
 		found = 0;
 		i = 0;
-		while  (i < size)
+		while (i < size)
 		{
 			if (ft_dictkeycmp(dict[i], dict[i + 1]) > 0)
 			{
@@ -66,6 +66,6 @@ void	ft_sortdict(t_record *dict)
 			i++;
 		}
 		if (!found)
-			break;
+			break ;
 	}	
 }

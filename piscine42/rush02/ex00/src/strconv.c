@@ -12,7 +12,7 @@
 
 #include "rush02.h"
 
-char 	*ft_trim(char *str)
+char	*ft_trim(char *str)
 {
 	while (*str == ' ')
 		str++;

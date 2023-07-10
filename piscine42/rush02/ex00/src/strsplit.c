@@ -44,10 +44,10 @@ int	ft_count_words(char *str, char *sep)
 char	**ft_split(char *str, char *sep)
 {
 	char	**list;
-	int	size;
-	int	i;
-	int	j;
-	int	k;
+	int		size;
+	int		i;
+	int		j;
+	int		k;
 
 	size = ft_count_words(str, sep);
 	list = (char **)malloc((size + 1) * sizeof(char *));

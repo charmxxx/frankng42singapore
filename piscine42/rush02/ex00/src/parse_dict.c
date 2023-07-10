@@ -6,7 +6,7 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 22:54:20 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 18:58:04 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/09 19:00:08 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 #include <stdlib.h>
 #include "rush02.h"
 
-char		*ft_parse_val(char *val)
+char	*ft_parse_val(char *val)
 {
-	int	l;
-	int	r;
-	int	i;
+	int		l;
+	int		r;
+	int		i;
 	char	*str;
 
 	l = 0;
@@ -40,7 +40,7 @@ char		*ft_parse_val(char *val)
 	return (str);
 }
 
-int		ft_initial_entries(long long key)
+int	ft_initial_entries(long long key)
 {
 	if (0 <= key && key <= 20)
 		return (1);
@@ -53,7 +53,7 @@ int		ft_initial_entries(long long key)
 	return (0);
 }
 
-int		ft_valid_dict_format(char *str)
+int	ft_valid_dict_format(char *str)
 {
 	int	valid;
 
@@ -120,10 +120,10 @@ t_record	*ft_parse_dict(char *filepath)
 	buf[bytes] = 0;
 	lines = ft_split(buf, "\n");
 	dict = ft_dict_from_strs(lines);
+	ft_free_strs(lines);
 	if (dict == NULL)
 		return (NULL);
 	ft_sortdict(dict);
-	ft_free_strs(lines);
 	if (close(fd) < 0)
 	{
 		ft_free_dict(dict);

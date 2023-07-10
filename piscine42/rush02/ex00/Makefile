@@ -1,7 +1,8 @@
 TARGET = rush-02
 INCLUDE = ./include
 SRC = main.c dict.c parse_dict.c stralloc.c strconv.c \
-      strio.c strsplit.c strutil.c sortdict.c
+      strio.c strsplit.c strutil.c sortdict.c dictalloc.c \
+      dictutil.c
 PRE = ./src/
 SRCS = ${addprefix ${PRE}, ${SRC}}
 OBJS = ${SRCS:.c=.o}
