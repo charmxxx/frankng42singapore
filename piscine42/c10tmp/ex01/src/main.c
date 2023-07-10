@@ -44,7 +44,7 @@ void	display_file(int fd, char *prog, char *file)
 	{
 		size = read(fd, buf, BUF_SIZE);
 		if (size <= 0)
-			break;
+			break ;
 		if (errno)
 		{
 			print_err_msg(prog, file);
@@ -61,10 +61,11 @@ int	main(int argc, char **argv)
 	char	*prog;
 
 	prog = argv[0];
-	i = 0;
 	if (argc == 1)
 		display_file(0, 0, 0);
 	else
+	{
+		i = 0;
 		while (++i < argc)
 		{
 			fd = open(argv[i], O_RDONLY);
@@ -76,5 +77,6 @@ int	main(int argc, char **argv)
 			display_file(fd, prog, argv[i]);
 			close(fd);
 		}
+	}
 	return (0);
 }
