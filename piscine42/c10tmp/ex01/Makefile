@@ -6,7 +6,7 @@ HEADERS := ./include/
 OBJS := $(SRCS:.c=.o)
 CC := cc
 RM := rm -f
-CFLAGS := -Wall -Wextra -Werror -I $(HEADERS)
+CFLAGS := -g -Wall -Wextra -Werror -I $(HEADERS)
 
 .PHONY: all clean fclean re
 
