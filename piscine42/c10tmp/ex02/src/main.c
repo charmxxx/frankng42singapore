@@ -6,7 +6,7 @@
 /*   By: vietnguy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 21:29:13 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/10 21:54:33 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/11 21:32:15 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,20 @@ void	display_file(int fd, int size)
 			idx++;
 		}
 		tmp = idx % size;
-		if (idx >=  size)
+		if (idx >= size)
 			write(1, buf + tmp, size - tmp);
 		write(1, buf, tmp);
 		free(buf);
 	}
+}
+
+void	print_title(int newline, char *filename)
+{
+	if (newline)
+		ft_putstr("\n");
+	ft_putstr("==> ");
+	ft_putstr(filename);
+	ft_putstr(" <==");
 }
 
 void	display(int argc, char **argv, int size)
@@ -58,19 +67,14 @@ void	display(int argc, char **argv, int size)
 	while (++i < argc)
 	{
 		errno = 0;
-		if ((fd = open(argv[i], O_RDONLY)) == -1)
+		fd = open(argv[i], O_RDONLY);
+		if (fd == -1)
 		{
 			print_err_msg(argv[0], argv[i]);
 			continue ;
 		}
 		if (argc > 4)
-		{
-			if (j)
-				ft_putstr("\n");
-			ft_putstr("==> ");
-			ft_putstr(argv[i]);
-			ft_putstr(" <==\n");
-		}
+			print_title(j, argv[i]);
 		j = 1;
 		display_file(fd, size);
 		close(fd);
@@ -82,6 +86,8 @@ int	main(int argc, char **argv)
 	int	size;
 
 	size = ft_atoi(argv[2]);
+	if (size == 0)
+		return (0);
 	if (argc == 3)
 		display_file(0, size);
 	else
