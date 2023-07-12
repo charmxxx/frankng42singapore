@@ -6,7 +6,7 @@
 /*   By: vietnguy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:55:03 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/12 11:05:49 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:11:21 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	ft_check_valid_board(char *str, t_instr *info)
 {
+	str += info->length;
 	while (*str)
 	{
 		if (*str != '\n' && *str != info->empty && \
