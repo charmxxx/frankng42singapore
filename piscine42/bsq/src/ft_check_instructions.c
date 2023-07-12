@@ -77,14 +77,15 @@ t_instr	*ft_first_line(char *str)
 	a = ft_strlen_mod(str);
 	if (check_v(str, a) == 1)
 	{
-		str2 = (char *)malloc(sizeof(*str2) * 1000);
 		ptr = (t_instr *)malloc(sizeof(t_instr) * 1000);
 		str2 = cut_str(str, a - 5);
 		ptr->height = ft_atoi(str2);
+		free(str2);
 		ptr->length = a;
 		ptr->empty = str[a - 4];
 		ptr->obst = str[a - 3];
 		ptr->full = str[a - 2];
+		
 	}
 	return (ptr);
 }

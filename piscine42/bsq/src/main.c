@@ -11,8 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_bsq.h"
-#define BUFF1 1000000
-#define BUFF2 8000000
+#define BUFF1 8000000
 
 void	ft_concat(char *dest, char *src, int *size, int buff_size)
 {
@@ -84,8 +83,9 @@ void	temp_read(int fd)
 {
 	char	*str;
 
-	str = ft_read(fd, BUFF2, 0);
+	str = ft_read(fd, BUFF1, 0);
 	ft_start(str);
+	free(str);
 	close(fd);
 }
 
@@ -114,6 +114,7 @@ int	main(int argc, char **argv)
 	{
 		str = ft_read(0, BUFF1, 0);
 		ft_start(str);
+		free(str);
 	}
 	return (0);
 }

@@ -38,8 +38,9 @@ void	ft_start(char *str)
 		ft_get_record(info, str, record);
 		ft_fill_board(record, str, info);
 		ft_putstrsc(str, info->length, info->height * (info->height + 1));
-		free(str);
 	}
 	else
 		ft_putstr("map error\n");
+	free(record);
+	free(info);
 }
