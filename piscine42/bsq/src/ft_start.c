@@ -6,7 +6,7 @@
 /*   By: vietnguy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:55:03 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/12 13:11:21 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/12 22:37:28 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 int	ft_check_valid_board(char *str, t_instr *info)
 {
+	int	mapsize;
+	
+	mapsize = info->length + info->height * (info->height + 1);
+	if (ft_strlen(str) != mapsize)
+		return (0);
 	str += info->length;
 	while (*str)
 	{
