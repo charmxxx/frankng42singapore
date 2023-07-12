@@ -6,7 +6,7 @@
 /*   By: vietnguy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:54:34 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/10 20:54:35 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:56:30 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ t_instr	*ft_first_line(char *str)
 		ptr->empty = str[a - 4];
 		ptr->obst = str[a - 3];
 		ptr->full = str[a - 2];
-		
 	}
 	return (ptr);
 }

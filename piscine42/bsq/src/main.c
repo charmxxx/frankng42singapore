@@ -6,7 +6,7 @@
 /*   By: vietnguy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:54:08 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/12 13:05:18 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:58:17 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,24 +97,22 @@ int	main(int argc, char **argv)
 
 	str = NULL;
 	i = 0;
-	if (argc != 1)
-	{
-		while (argc > ++i)
-		{
-			if (i > 1)
-				ft_putchar('\n');
-			fd = open(argv[i], O_RDONLY);
-			if (fd > 0)
-				temp_read(fd);
-			else
-				ft_putstr("map error\n");
-		}
-	}
-	else
+	if (argc <= 1)
 	{
 		str = ft_read(0, BUFF1, 0);
 		ft_start(str);
 		free(str);
+		return (0);
+	}
+	while (argc > ++i)
+	{
+		if (i > 1)
+			ft_putchar('\n');
+		fd = open(argv[i], O_RDONLY);
+		if (fd > 0)
+			temp_read(fd);
+		else
+			ft_putstr("map error\n");
 	}
 	return (0);
 }
