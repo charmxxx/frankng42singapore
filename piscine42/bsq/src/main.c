@@ -6,7 +6,7 @@
 /*   By: vietnguy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:54:08 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/10 20:54:09 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:05:18 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*ft_read(int fd, int buff_size, int size)
 	str[0] = 0;
 	while (i <= nrows)
 	{
-		bytes = read(fd, buff, 100);
+		bytes = read(fd, buff, BUFF1);
 		if (bytes <= 0)
 			break ;
 		if (nrows == 0)

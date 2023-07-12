@@ -6,7 +6,7 @@
 /*   By: vietnguy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:55:17 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/10 20:55:18 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/12 09:41:27 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,19 +92,22 @@ int	ft_check_square(char *str, int position[2], t_instr *info, int size)
 
 void	ft_fill_board(t_record *record, char *str, t_instr *info)
 {
-	int		x;
-	int		y;
-	int		position;
+	int	x;
+	int	y;
+	int	init_pos;
+	int	curr_pos;
 
 	y = 0;
-	position = info->length + record->x + (record->y) * (info->width + 1);
+	init_pos = info->length + record->x + (record->y) * (info->width + 1);
 	while (y < record->max)
 	{
 		x = 0;
+		curr_pos = init_pos + x + y * (info->width + 1);
 		while (x < record->max)
 		{
-			str[position + x + y * (info->width + 1)] = info->full;
+			str[curr_pos] = info->full;
 			x++;
+			curr_pos++;
 		}
 		y++;
 	}

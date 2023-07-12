@@ -6,7 +6,7 @@
 /*   By: vietnguy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:51:59 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/10 20:52:01 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/12 10:51:24 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_record
 void				ft_putchar(char c);
 void				ft_putnbr(int nb);
 void				ft_putstr(char *str);
+void				ft_putstrsc(char *str, int start, int count);
 int					ft_atoi(char *str);
 int					ft_strlen(char *str);
 void				ft_strcpy(char *dest, char *str);
