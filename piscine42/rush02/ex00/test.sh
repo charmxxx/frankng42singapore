@@ -18,8 +18,6 @@ F20_NUM="20"
 
 make re
 
-echo "INPUT: " $F2_NUM
-echo "OUTPUT: "
 $RUSH_02 $NORMAL_DICT $F2_NUM | cat -e
 $RUSH_02 $NORMAL_DICT $ZERO_NUM | cat -e
 $RUSH_02 $NORMAL_DICT $UNSIGNTEST_NUM | cat -e

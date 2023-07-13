@@ -6,7 +6,7 @@
 /*   By: vietnguy <vietnguy@student.42singapore.sg  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 09:30:48 by vietnguy          #+#    #+#             */
-/*   Updated: 2023/07/08 17:55:01 by vietnguy         ###   ########.fr       */
+/*   Updated: 2023/07/13 15:16:48 by vietnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ long long	ft_atoi(char *str)
 	while (*str != 0 && *str >= '0' && *str <= '9')
 	{
 		n = n * 10 + *str - '0';
+		if (n < 0)
+			return (-1);
 		str++;
 	}
 	return (sign * n);
